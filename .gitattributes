@@ -1,0 +1,4 @@
+# Count the real code (shell/batch scripts) in the language stats — the guides
+# are prose, so mark Markdown as documentation so it doesn't hide the code.
+*.md linguist-documentation
+examples/** linguist-detectable=true
