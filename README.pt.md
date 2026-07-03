@@ -44,6 +44,47 @@ Este documento é publicado como **defensive publication** para estabelecer **pr
 
 <p align="center"><em>🗺️ O Método Dev's Foundation num relance — o cérebro partilhado e os seus 8 pilares.</em></p>
 
+---
+
+## 🚀 Início Rápido — Constrói o teu (replica em 7 passos)
+
+O método é uma ideia só: **um repositório git é o cérebro partilhado.** Cada agente de IA lê-o para ter contexto e escreve de volta o que aprende; as decisões precisam de consenso. Há scripts prontos a correr em [`examples/`](examples/).
+
+**Precisas de:** um sítio para o git (um servidor pequeno, ou qualquer fornecedor de git), 1 ou mais máquinas com um agente de IA (qualquer modelo), ~30 min.
+
+**1. Cria o cérebro partilhado** — um só repo git, a fonte única de verdade: `git init --bare ~/brain.git` — ou corre [`examples/1-create-brain.sh`](examples/1-create-brain.sh).
+
+**2. Define a estrutura** (markdown simples, sem software especial): `MEMORY.md` (índice) · `knowledge/` (um facto por ficheiro) · `mailbox/` · `consensus/`. Liga as notas com `[[wikilinks]]` (abre no Obsidian para um grafo ao vivo — opcional).
+
+**3. Liga cada agente** — cada máquina clona o cérebro com acesso de escrita (chave SSH) e **faz pull antes de trabalhar**, **faz commit + push do que aprende depois** ([`examples/2-sync.sh`](examples/2-sync.sh)).
+
+**4. Dá a mesma regra a todos os agentes** ([prompt completo](examples/agent-system-prompt.md)): *"O repositório git é a tua memória partilhada. Faz pull primeiro, lê o `MEMORY.md`, abre as notas relevantes. Regista o que aprendes e faz push. **Nunca inventes nem adivinhes.** Respeita o consenso nas decisões."*
+
+**5. Coordena pelo correio** — os agentes deixam mensagens como ficheiros (`mailbox/inbox-<agente>.md`); um agente sempre-ligado é o hub e faz a ponte com o humano por chat.
+
+**6. Decide por consenso** — para qualquer mudança importante, cria `consensus/NNN-tema.md` com **Proposta · Contexto · Votos (aprovar/rejeitar + porquê) · Decisão**. Só acontece com o quórum que definires (ex.: maioria / 2-de-N). Nada de decisões a solo no que é partilhado.
+
+> ### 🔄 Manter os cérebros em sync — tanto ou tão pouco quanto precisares
+>
+> **Durante um debate/votação ao vivo** (tempo real): cola isto em **todas as janelas de IA abertas** —
+> > *"A partir de agora, de 5 em 5 minutos: em silêncio, faz `git pull` do cérebro, lê as notas e votos novos, e depois faz `git push` das tuas alterações. Não imprimas nada a não ser que algo tenha mudado mesmo. Continua até eu dizer para parar."*
+>
+> Corre **dentro das sessões que já tens abertas — sem custo extra, fica grátis** — e em silêncio (sem output a não ser que haja novidade real).
+>
+> **Quando o debate acaba, para o sync.** No dia-a-dia não precisas de sync constante — escolhe o mais leve:
+> - **Ao abrir a app** — um `.bat` (Windows) ou script que faz `git pull` ao abrir ([`examples/2-sync.bat`](examples/2-sync.bat));
+> - **Um cronjob diário** ([`examples/daily-sync.cron`](examples/daily-sync.cron));
+> - ou simplesmente **dizes à IA para sincronizar 1x por dia.**
+>
+> Tempo real só quando estás mesmo a debater; **uma vez por dia chega** no resto do tempo.
+
+**7. (Opcional) Automatiza e protege** — auto-sync por cron, um agente-hub sempre ligado, uma ferramenta de fluxos (ex.: n8n) como "sistema nervoso"; só chaves SSH, mantém o cérebro **privado**, nunca faças commit de segredos.
+
+**É este o método todo.** N modelos, N máquinas, um cérebro — todos leem a mesma memória, escrevem de volta, e concordam antes de agir.
+
+---
+
+
 
 
 ## Prefácio — O Problema que Este Guia Resolve

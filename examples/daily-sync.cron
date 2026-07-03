@@ -1,0 +1,2 @@
+# Sync the brain once a day at 06:00 (crontab -e). Real-time only during debates.
+0 6 * * * cd /path/to/your/brain && git pull --rebase --autostash origin master && git push origin HEAD:master

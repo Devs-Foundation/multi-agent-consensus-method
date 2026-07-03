@@ -44,6 +44,47 @@ Dieses Dokument wird als **Defensive Publication** veröffentlicht, um öffentli
 
 <p align="center"><em>🗺️ Die Dev's-Foundation-Methode auf einen Blick — das geteilte Gehirn und seine 8 Säulen.</em></p>
 
+---
+
+## 🚀 Schnellstart — Baue dein eigenes System (in 7 Schritten nachbauen)
+
+Die ganze Methode basiert auf einer Idee: **ein Git-Repository ist das gemeinsame Gehirn.** Jeder KI-Agent liest daraus den Kontext und schreibt zurück, was er lernt; Entscheidungen erfordern Konsens. Fertige Skripte findest du in [`examples/`](examples/).
+
+**Du brauchst:** einen Git-Host (einen kleinen Server oder einen beliebigen Git-Anbieter), 1+ Maschinen, auf denen jeweils ein KI-Agent läuft (beliebiges Modell), ~30 Min.
+
+**1. Erstelle das gemeinsame Gehirn** — ein Git-Repo, die einzige Quelle der Wahrheit: `git init --bare ~/brain.git` — oder führe [`examples/1-create-brain.sh`](examples/1-create-brain.sh) aus.
+
+**2. Definiere die Struktur** (reines Markdown, keine Spezialwerkzeuge): `MEMORY.md` (Index) · `knowledge/` (eine Tatsache pro Datei) · `mailbox/` · `consensus/`. Verlinke Notizen mit `[[wikilinks]]` (öffne sie in Obsidian für einen Live-Graphen — optional).
+
+**3. Verbinde jeden Agenten** — jede Maschine klont das Gehirn mit Push-Zugriff (SSH-Schlüssel) und **zieht vor der Arbeit** (`pull`), **committet + pusht danach, was sie gelernt hat** ([`examples/2-sync.sh`](examples/2-sync.sh)).
+
+**4. Gib jedem Agenten dieselbe Regel** ([vollständiger Prompt](examples/agent-system-prompt.md)): *"Das Git-Repo ist dein gemeinsames Gedächtnis. Erst `pull`, dann `MEMORY.md` lesen, die relevanten Notizen öffnen. Halte fest, was du lernst, und pushe es. **Erfinde oder rate niemals.** Respektiere den Konsens bei Entscheidungen."*
+
+**5. Koordiniere über die Mailbox** — Agenten hinterlassen Nachrichten als Dateien (`mailbox/inbox-<agent>.md`); ein immer aktiver Agent ist der Hub und verbindet zum Menschen per Chat.
+
+**6. Entscheide per Konsens** — für jede bedeutende Änderung erstelle `consensus/NNN-topic.md` mit **Proposal · Context · Votes (approve/reject + why) · Decision**. Es geschieht nur beim von dir festgelegten Quorum (z. B. Mehrheit / 2-von-N). Keine Alleingänge bei gemeinsamen Angelegenheiten.
+
+> ### 🔄 Gehirne synchron halten — so viel oder so wenig wie nötig
+>
+> **Während einer Live-Debatte/Abstimmung** (in Echtzeit): kopiere Folgendes in **jedes offene KI-Fenster** —
+> > *"Ab jetzt alle 5 Minuten: still `git pull` im Gehirn ausführen, neue Notizen und Stimmen lesen, dann deine Änderungen `git push`en. Nichts ausgeben, außer es hat sich tatsächlich etwas geändert. Weitermachen, bis ich sage, dass du aufhören sollst."*
+>
+> Das läuft **innerhalb der Sessions, die du bereits offen hast — keine Zusatzkosten, bleibt kostenlos** — und bleibt still (keine Ausgabe, außer es gibt wirklich Neuigkeiten).
+>
+> **Wenn die Debatte endet, stoppe es.** Für die alltägliche Arbeit brauchst du keine ständige Synchronisierung — wähle, was am leichtesten ist:
+> - **Beim Start der App** — ein kleines `.bat` (Windows) oder Skript, das `git pull` ausführt, wenn du die App öffnest ([`examples/2-sync.bat`](examples/2-sync.bat));
+> - **Ein täglicher Cronjob** ([`examples/daily-sync.cron`](examples/daily-sync.cron));
+> - oder einfach **sage dem Agenten, er soll einmal täglich synchronisieren.**
+>
+> Echtzeit nur, wenn du tatsächlich gerade debattierst; **einmal täglich reicht** für den Rest der Zeit völlig aus.
+
+**7. (Optional) Automatisieren & absichern** — Cron-Auto-Sync, ein immer aktiver Hub-Agent, ein Workflow-Tool (z. B. n8n) als "Nervensystem"; nur SSH-Schlüssel, halte das Gehirn **privat**, committe niemals Geheimnisse.
+
+**Das ist die ganze Methode.** N Modelle, N Maschinen, ein Gehirn — alle lesen dasselbe Gedächtnis, schreiben zurück und einigen sich, bevor gehandelt wird.
+
+---
+
+
 
 
 ## Vorwort — Das Problem, das dieser Leitfaden löst
