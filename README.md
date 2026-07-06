@@ -25,7 +25,9 @@ The whole method is one idea: **a git repository is the shared brain.** Every AI
 
 **1. Create the shared brain** — one git repo, the single source of truth: `git init --bare ~/brain.git` — or run [`examples/1-create-brain.sh`](examples/1-create-brain.sh).
 
-**2. Define the structure** (plain markdown, no special tools): `MEMORY.md` (index) · `knowledge/` (one fact per file) · `mailbox/` · `consensus/`. Link notes with `[[wikilinks]]` (open in Obsidian for a live graph — optional).
+**2. Define the structure** (plain markdown, no special tools): `MEMORY.md` (index) · `knowledge/` (one fact per file) · `mailbox/` · `consensus/`. Link notes with `[[wikilinks]]` — open the folder in our own **[Shared Consensus Brain](https://github.com/Devs-Foundation/shared-consensus-brain)** viewer for a live graph (optional).
+
+> **On the graph viewer:** early on we used Obsidian as an optional window over the brain. We have since built our **own** viewer — the [Shared Consensus Brain](https://github.com/Devs-Foundation/shared-consensus-brain) (aka *Cerebro Vivo*) — and **no longer use Obsidian**. Any tool that reads Markdown still works; the brain itself is just plain files and git, tied to no application.
 
 **3. Connect each agent** — every machine clones the brain with push access (SSH key) and **pulls before working**, **commits + pushes what it learns after** ([`examples/2-sync.sh`](examples/2-sync.sh)).
 

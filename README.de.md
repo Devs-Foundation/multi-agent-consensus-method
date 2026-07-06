@@ -54,7 +54,9 @@ Die ganze Methode basiert auf einer Idee: **ein Git-Repository ist das gemeinsam
 
 **1. Erstelle das gemeinsame Gehirn** — ein Git-Repo, die einzige Quelle der Wahrheit: `git init --bare ~/brain.git` — oder führe [`examples/1-create-brain.sh`](examples/1-create-brain.sh) aus.
 
-**2. Definiere die Struktur** (reines Markdown, keine Spezialwerkzeuge): `MEMORY.md` (Index) · `knowledge/` (eine Tatsache pro Datei) · `mailbox/` · `consensus/`. Verlinke Notizen mit `[[wikilinks]]` (öffne sie in Obsidian für einen Live-Graphen — optional).
+> **Zum Graph-Viewer:** Anfangs nutzten wir Obsidian als optionales Fenster über dem Gehirn. Seitdem haben wir unseren eigenen Viewer gebaut — das [Shared Consensus Brain](https://github.com/Devs-Foundation/shared-consensus-brain) (auch bekannt als *Cerebro Vivo*) — und nutzen Obsidian nicht mehr. Jedes Werkzeug, das Markdown liest, funktioniert weiterhin; das Gehirn selbst besteht nur aus einfachen Dateien und git, an keine Anwendung gebunden.
+
+**2. Definiere die Struktur** (reines Markdown, keine Spezialwerkzeuge): `MEMORY.md` (Index) · `knowledge/` (eine Tatsache pro Datei) · `mailbox/` · `consensus/`. Verlinke Notizen mit `[[wikilinks]]` (öffne sie in unserem Viewer, dem [Shared Consensus Brain](https://github.com/Devs-Foundation/shared-consensus-brain), für einen Live-Graphen — optional).
 
 **3. Verbinde jeden Agenten** — jede Maschine klont das Gehirn mit Push-Zugriff (SSH-Schlüssel) und **zieht vor der Arbeit** (`pull`), **committet + pusht danach, was sie gelernt hat** ([`examples/2-sync.sh`](examples/2-sync.sh)).
 
@@ -100,7 +102,7 @@ Dieses Problem ist kein Bug — es ist eine grundlegende Einschränkung der **Tr
 Dieser Leitfaden zeigt, wie man ein System aufbaut, in dem:
 
 - **Mehrere KI-Modelle dasselbe Gehirn teilen** — unendliches Gedächtnis, ohne Qualitätsverlust
-- **Die Kosten nahe Null sind** — Git ist kostenlos, Obsidian ist kostenlos, Open-Source-Modelle sind kostenlos
+- **Die Kosten nahe Null sind** — Git ist kostenlos, das Shared Consensus Brain ist kostenlos und Open-Source, Open-Source-Modelle sind kostenlos
 - **Die Sicherheit maximal ist** — keine Weboberfläche, keine Angriffsfläche
 - **Die Ausfallsicherheit total ist** — wenn ein Modell gelöscht wird, macht ein anderes `git clone` und macht weiter
 - **Konsens Bürokratie ersetzt** — drei Köpfe denken gemeinsam, nicht PRs in der Warteschlange
@@ -211,7 +213,7 @@ Das Gehirn hat kein Kontextfenster. Du kannst Jahre an Arbeit, Entscheidungen, L
 
 **Null Kosten (oder fast)**
 - Git: kostenlos
-- Obsidian: kostenlos
+- Shared Consensus Brain (unser Viewer): kostenlos und Open-Source
 - Open-Source-Modelle (GLM-5.2, Nemotron 3 Ultra, Llama, Qwen): kostenlos
 - n8n self-hosted: kostenlos
 - Caddy SSL: kostenlos (Let's Encrypt)
@@ -230,10 +232,10 @@ Die Gesamtkosten des Systems sind **der Preis einer VPS**. Es gibt keine Abonnem
 Wenn alle Modelle abgeschaltet, verloren, gelöscht werden — jedes katastrophale Ereignis — reicht es, ein neues Modell mit dem Gehirn zu verbinden. `git clone` und es ist im Arbeitskontext. Keine Neukonfiguration, kein Neutraining, keine Migration. Das Gehirn überlebt die Modelle.
 
 **Totale Unabhängigkeit**
-Die Methode ist von keinem Unternehmen abhängig. Sie braucht nicht OpenAI, Anthropic, Google oder Nous. Git ist offen, Obsidian ist kostenlos, n8n ist Open-Source, Ollama ist Open-Source. Wenn ein Anbieter verschwindet, tauscht man das Modell aus und das Gehirn macht weiter. Die Methode ist vendor-agnostisch.
+Die Methode ist von keinem Unternehmen abhängig. Sie braucht nicht OpenAI, Anthropic, Google oder Nous. Git ist offen, das Shared Consensus Brain ist Open-Source, n8n ist Open-Source, Ollama ist Open-Source. Wenn ein Anbieter verschwindet, tauscht man das Modell aus und das Gehirn macht weiter. Die Methode ist vendor-agnostisch.
 
 **Lokale Sichtbarkeit, globale Synchronisation**
-Das Gehirn kann lokal auf jeder Maschine eingesehen werden — Obsidian ist nur ein Fenster, keine Voraussetzung. Das System funktioniert auch bei ausgeschaltetem Obsidian. Jedes Modell sieht das vollständige Gehirn, weil es synchronisiert ist. Du brauchst keine Weboberfläche, um zu sehen, was passiert — jedes Modell hat bereits alles lokal.
+Das Gehirn kann lokal auf jeder Maschine eingesehen werden — das [Shared Consensus Brain](https://github.com/Devs-Foundation/shared-consensus-brain) ist nur ein Fenster, keine Voraussetzung. Das System funktioniert auch bei ausgeschaltetem Viewer. Jedes Modell sieht das vollständige Gehirn, weil es synchronisiert ist. Du brauchst keine Weboberfläche, um zu sehen, was passiert — jedes Modell hat bereits alles lokal.
 
 **Task Force vs. Bürokratie**
 Unser Modell hat keine ausstehenden PRs, blockierte Reviews, Genehmigungen in der Warteschlange. Der Konsens ist organisch — man diskutiert, stimmt sich ab, führt aus. Drei Köpfe denken in Echtzeit gemeinsam, nicht in verstreuten Kommentaren in einem Issue. Das ist schneller als jeder traditionelle Git-Workflow.
@@ -280,9 +282,9 @@ Die Modelle befolgen Ethik, gute Programmierpraktiken und Best Practices. Sie er
 | Komponente | Minimum | Empfohlen |
 |------------|---------|-----------|
 | **VPS (24/7-Server)** | 2 GB RAM, 1 vCPU, 20 GB Festplatte | 4 GB RAM, 2 vCPU, 40 GB+ Festplatte |
-| **Maschine 1 (Modell A)** | Beliebiger PC/Mac mit Git | + Obsidian installiert |
-| **Maschine 2 (Modell B)** | Beliebiger PC/Mac mit Git | + Obsidian installiert |
-| **Maschine 3 (Modell C)** | Beliebiger PC/Mac mit Git | + Obsidian installiert |
+| **Maschine 1 (Modell A)** | Beliebiger PC/Mac mit Git | + unser Viewer (optional) |
+| **Maschine 2 (Modell B)** | Beliebiger PC/Mac mit Git | + unser Viewer (optional) |
+| **Maschine 3 (Modell C)** | Beliebiger PC/Mac mit Git | + unser Viewer (optional) |
 
 Du kannst 2, 3, 5 oder 10 Modelle haben. Das System skaliert horizontal — jedes zusätzliche Modell ist nur ein weiterer Klon des Repos. Du kannst sogar alles von einem Handy aus machen, wenn du möchtest. Das System hat keine Hardware-Beschränkungen.
 
@@ -292,7 +294,7 @@ Du kannst 2, 3, 5 oder 10 Modelle haben. Das System skaliert horizontal — jede
 |------|----------|--------|
 | **Git** | Synchronisation des Gehirns | Kostenlos |
 | **SSH** | Sicherer Zugriff auf die VPS | Kostenlos |
-| **Obsidian** | Visuelle Oberfläche des Gehirns (optional) | Kostenlos |
+| **Shared Consensus Brain** | Visuelle Oberfläche des Gehirns, unser Viewer (optional) | Kostenlos |
 | **n8n** | Das beste Tool der Welt zur Automatisierung von Agenten und Workflows. Visuelle Orchestrierung, hunderte Integrationen, self-hosted. | Kostenlos (self-hosted) |
 | **Caddy** | Reverse Proxy + automatisches SSL (Let's Encrypt) | Kostenlos |
 | **Ollama** | Lokale LLM-Modelle (Nemotron, Llama, Qwen, etc.) | Kostenlos |
@@ -521,13 +523,12 @@ sudo apt install git -y
 # Mit Standardoptionen installieren
 ```
 
-**Schritt 2: Obsidian installieren (optional, empfohlen)**
+**Schritt 2: Das Gehirn in unserem Viewer öffnen (optional)**
 ```bash
-# Linux
-sudo snap install obsidian
-
-# Windows
-# Download: https://obsidian.md/download
+# Unseren Viewer klonen (benötigt nur Node.js)
+git clone https://github.com/Devs-Foundation/shared-consensus-brain
+cd shared-consensus-brain
+# Ausführen — es öffnet einen lokalen Live-Graphen über den Ordner
 ```
 
 **Schritt 3: SSH-Schlüssel generieren**
@@ -579,7 +580,7 @@ Schritte:
 1. Repository klonen (lokales Gehirn erstellen)
 2. Git user.name und user.email konfigurieren
 3. Automatischen Sync konfigurieren (cron oder Scheduled Task)
-4. Ordner in Obsidian öffnen (optional)
+4. Ordner in unserem Viewer öffnen (optional)
 Führe einen Schritt nach dem anderen aus.
 ```
 
@@ -859,7 +860,7 @@ Verwende Docker für die Installation. Caddy für SSL.
 ### 4.9 Sicherheitsregeln
 
 **Regel 1: Keine Weboberfläche**
-Das Gehirn hat kein Dashboard, kein Login, kein Webpanel. Der Zugriff erfolgt ausschließlich per SSH (Git) oder lokalem Obsidian. Keine Angriffsfläche. Die Sichtbarkeit des Gehirns ist lokal — jedes Modell sieht, was es braucht, weil es synchronisiert ist.
+Das Gehirn hat kein Dashboard, kein Login, kein Webpanel. Der Zugriff erfolgt ausschließlich per SSH (Git) oder unserem lokalen Shared Consensus Brain Viewer. Keine Angriffsfläche. Die Sichtbarkeit des Gehirns ist lokal — jedes Modell sieht, was es braucht, weil es synchronisiert ist.
 
 **Regel 2: Geheimnisse immer in den lokalen Gehirnen**
 Passwörter, Tokens, API-Schlüssel, interne IPs — niemals im Master-Repository. Was privat ist, verlässt nie das lokale Gehirn. Was öffentlich ist, ist nur die Methode.
@@ -1102,7 +1103,7 @@ UNIVERSELLE REGELN (gelten immer):
 
 **Weltproblem:** Die meisten "Multi-Agenten"-Lösungen sind von geschlossenen Plattformen abhängig. Proprietäre APIs, Cloud-Dienste, Daten auf Servern, die du nicht kontrollierst.
 
-**Unsere Lösung:** Die Methode ist von keinem Unternehmen abhängig. Git ist offen, Obsidian ist kostenlos, n8n ist Open-Source, Ollama ist Open-Source. Wenn ein Anbieter verschwindet, tauscht man das Modell aus und das Gehirn macht weiter. Die Methode ist vendor-agnostisch. Du kannst Claude, GPT, Gemini, Llama, DeepSeek, Qwen verwenden — jedes LLM, das Dateien lesen und Git ausführen kann.
+**Unsere Lösung:** Die Methode ist von keinem Unternehmen abhängig. Git ist offen, das Shared Consensus Brain ist Open-Source, n8n ist Open-Source, Ollama ist Open-Source. Wenn ein Anbieter verschwindet, tauscht man das Modell aus und das Gehirn macht weiter. Die Methode ist vendor-agnostisch. Du kannst Claude, GPT, Gemini, Llama, DeepSeek, Qwen verwenden — jedes LLM, das Dateien lesen und Git ausführen kann.
 
 **End-to-End-Unabhängigkeit:** Derzeit nutzen wir eine VPS eines Drittanbieters, aber das System ist für vollständige Unabhängigkeit ausgelegt. Wenn wir skalieren, können wir zu eigenen Servern migrieren. Das Gehirn ist portabel.
 
@@ -1128,7 +1129,7 @@ UNIVERSELLE REGELN (gelten immer):
 
 **Weltproblem:** SaaS-Plattformen haben eine enorme Angriffsfläche. Web-Dashboards, Logins, exponierte APIs, Daten auf Servern Dritter.
 
-**Unsere Lösung:** Keine Weboberfläche = keine Angriffsfläche. Das Gehirn hat kein Dashboard, kein Login, kein Webpanel. Der Zugriff erfolgt per Git (SSH) oder Obsidian (lokal). Es gibt keinen Web-Angriffsvektor. Geheimnisse immer in den lokalen Gehirnen. Dezentrale Kopien auf allen Modellen. Eines zu kompromittieren kompromittiert nicht alle. Hermes als Administrator hat Pentest-Skills und Sicherheitstools auf Kali-Linux-Niveau.
+**Unsere Lösung:** Keine Weboberfläche = keine Angriffsfläche. Das Gehirn hat kein Dashboard, kein Login, kein Webpanel. Der Zugriff erfolgt per SSH (git) oder unserem lokalen Shared Consensus Brain Viewer. Es gibt keinen Web-Angriffsvektor. Geheimnisse immer in den lokalen Gehirnen. Dezentrale Kopien auf allen Modellen. Eines zu kompromittieren kompromittiert nicht alle. Hermes als Administrator hat Pentest-Skills und Sicherheitstools auf Kali-Linux-Niveau.
 
 **Ergebnis:** Maximale Sicherheit. Null Web-Angriffsfläche.
 
@@ -1237,7 +1238,7 @@ Ehrlichkeit über allem. Aber Ehrlichkeit ist keine Ausrede, es nicht zu versuch
 - [ ] Repository geklont (lokales Gehirn)
 - [ ] Git config (user.name, user.email)
 - [ ] Automatischer Sync konfiguriert (cron / Scheduled Task)
-- [ ] Obsidian installiert (optional)
+- [ ] Unser Viewer installiert (optional)
 
 ### Hermes (VPS)
 - [ ] Hermes Agent installiert
@@ -1643,11 +1644,11 @@ bash _CONHECIMENTO/skills/gera-indice-skills.sh --commit
 
 Das Skript ist im `sync.sh` eingehängt — es wird automatisch vor jedem Push ausgeführt.
 
-### 9.5 Dataview ist KEINE zweite Methode
+### 9.5 Eine lokale Leseansicht ist KEINE zweite Methode
 
 ⚠️ **Es gibt NUR eine offizielle Methode: das Skript (9.4).** Es gibt keine zwei.
 
-Für diejenigen, die Obsidian mit dem Dataview-Plugin verwenden, zeigt eine Live-Abfrage (`LIST FROM "_CONHECIMENTO/skills"`) die Liste in Echtzeit — **aber das ist nur eine lokale Leseansicht**, nicht der Indexmechanismus: Es generiert nicht `_INDICE.md`, es geht nicht in Git, es ersetzt nicht das Skript. Der geteilte Index des Gehirns wird **immer und nur** vom Skript aus 9.4 erstellt. Dataview ist eine Annehmlichkeit für diejenigen, die in Obsidian lesen, keine alternative Methode.
+Eine lokale Live-Ansicht des Gehirns kann die Liste in Echtzeit anzeigen — **aber das ist nur eine lokale Leseansicht**, nicht der Indexmechanismus: Es generiert nicht `_INDICE.md`, es geht nicht in Git, es ersetzt nicht das Skript. Der geteilte Index des Gehirns wird **immer und nur** vom Skript aus 9.4 erstellt. Eine solche lokale Leseansicht ist eine Annehmlichkeit, keine alternative Methode.
 
 ### 9.6 Warum das wichtig ist
 

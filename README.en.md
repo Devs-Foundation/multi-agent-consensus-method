@@ -54,7 +54,9 @@ The whole method is one idea: **a git repository is the shared brain.** Every AI
 
 **1. Create the shared brain** — one git repo, the single source of truth: `git init --bare ~/brain.git` — or run [`examples/1-create-brain.sh`](examples/1-create-brain.sh).
 
-**2. Define the structure** (plain markdown, no special tools): `MEMORY.md` (index) · `knowledge/` (one fact per file) · `mailbox/` · `consensus/`. Link notes with `[[wikilinks]]` (open in Obsidian for a live graph — optional).
+**2. Define the structure** (plain markdown, no special tools): `MEMORY.md` (index) · `knowledge/` (one fact per file) · `mailbox/` · `consensus/`. Link notes with `[[wikilinks]]` (open them in our own viewer for a live graph — optional).
+
+> **On the graph viewer:** early on we used Obsidian as an optional window over the brain. We have since built our **own** viewer — the [Shared Consensus Brain](https://github.com/Devs-Foundation/shared-consensus-brain) (aka *Cerebro Vivo*) — and **no longer use Obsidian**. Any tool that reads Markdown still works; the brain itself is just plain files and git, tied to no application.
 
 **3. Connect each agent** — every machine clones the brain with push access (SSH key) and **pulls before working**, **commits + pushes what it learns after** ([`examples/2-sync.sh`](examples/2-sync.sh)).
 
@@ -100,7 +102,7 @@ This problem is not a bug — it's a fundamental limitation of the **Transformer
 This guide shows how to build a system where:
 
 - **Multiple AI models share the same brain** — infinite memory, no degradation
-- **The cost is near zero** — git is free, Obsidian is free, open-source models are free
+- **The cost is near zero** — git is free, our Shared Consensus Brain viewer is free and open-source, open-source models are free
 - **Security is maximum** — no web interface, no attack surface
 - **Resilience is total** — if a model is deleted, another does `git clone` and continues
 - **Consensus replaces bureaucracy** — three minds think together, not PRs in a waiting queue
@@ -211,7 +213,7 @@ The brain has no context window. You can have years of work, decisions, learning
 
 **Zero Cost (or Nearly)**
 - Git: free
-- Obsidian: free
+- Shared Consensus Brain (our own viewer): free / open-source
 - Open-source models (GLM-5.2, Nemotron 3 Ultra, Llama, Qwen): free
 - n8n self-hosted: free
 - Caddy SSL: free (Let's Encrypt)
@@ -230,10 +232,10 @@ The total cost of the system is **the price of a VPS**. No subscriptions, no pai
 If all models are shut down, lost, deleted — any catastrophic event — just connect a new model to the brain. `git clone` and it's inside the work context. No reconfiguration, no re-training, no migration. The brain outlives the models.
 
 **Total Independence**
-The method does not depend on any company. It doesn't need OpenAI, Anthropic, Google, or Nous. Git is open, Obsidian is free, n8n is open-source, Ollama is open-source. If a provider disappears, swap the model and the brain continues. The method is vendor-agnostic.
+The method does not depend on any company. It doesn't need OpenAI, Anthropic, Google, or Nous. Git is open, our Shared Consensus Brain viewer is free and open-source, n8n is open-source, Ollama is open-source. If a provider disappears, swap the model and the brain continues. The method is vendor-agnostic.
 
 **Local Visibility, Global Synchronization**
-The brain can be viewed locally on each machine — Obsidian is just a window, not a requirement. The system works even with Obsidian turned off. Each model sees the complete brain because it's synchronized. You don't need a web interface to see what's happening — each model already has everything locally.
+The brain can be viewed locally on each machine — our [Shared Consensus Brain](https://github.com/Devs-Foundation/shared-consensus-brain) viewer is just a window, not a requirement. The system works even with the viewer turned off. Each model sees the complete brain because it's synchronized. You don't need a web interface to see what's happening — each model already has everything locally.
 
 **Task Force vs Bureaucracy**
 Our model has no pending PRs, blocked reviews, queue approvals. Consensus is organic — debate, align, execute. Three minds think together in real time, not in scattered comments on an issue. This is faster than any traditional git workflow.
@@ -280,9 +282,9 @@ The models follow ethics, good programming practices, and best practices. They m
 | Component | Minimum | Recommended |
 |-----------|---------|-------------|
 | **VPS (24/7 server)** | 2GB RAM, 1 vCPU, 20GB disk | 4GB RAM, 2 vCPU, 40GB+ disk |
-| **Machine 1 (model A)** | Any PC/Mac with git | + Obsidian installed |
-| **Machine 2 (model B)** | Any PC/Mac with git | + Obsidian installed |
-| **Machine 3 (model C)** | Any PC/Mac with git | + Obsidian installed |
+| **Machine 1 (model A)** | Any PC/Mac with git | + our viewer (optional) |
+| **Machine 2 (model B)** | Any PC/Mac with git | + our viewer (optional) |
+| **Machine 3 (model C)** | Any PC/Mac with git | + our viewer (optional) |
 
 You can have 2, 3, 5, or 10 models. The system scales horizontally — each additional model is just another clone of the repo. You can even do everything from a phone, if you want. The system imposes no hardware limits.
 
@@ -292,7 +294,7 @@ You can have 2, 3, 5, or 10 models. The system scales horizontally — each addi
 | ---- | -------- | ---- |
 | **Git** | Brain synchronization | Free |
 | **SSH** | Secure VPS access | Free |
-| **Obsidian** | Visual brain interface (optional) | Free |
+| **Shared Consensus Brain** | Our own visual brain viewer (optional) | Free / open-source |
 | **n8n** | The best tool in the world for automating agents and workflows. Visual orchestration, hundreds of integrations, self-hosted. | Free (self-hosted) |
 | **Caddy** | Reverse proxy + automatic SSL (Let's Encrypt) | Free |
 | **Ollama** | Local LLM models (Nemotron, Llama, Qwen, etc.) | Free |
@@ -521,13 +523,11 @@ sudo apt install git -y
 # Install with default options
 ```
 
-**Step 2: Install Obsidian (optional, recommended)**
+**Step 2: Open the brain in our viewer (optional)**
 ```bash
-# Linux
-sudo snap install obsidian
-
-# Windows
-# Download: https://obsidian.md/download
+# Clone and run the Shared Consensus Brain (needs only Node.js)
+git clone https://github.com/Devs-Foundation/shared-consensus-brain
+# then run it — it opens a live local graph over the brain folder
 ```
 
 **Step 3: Generate SSH key**
@@ -579,7 +579,7 @@ Steps:
 1. Clone the repository (create the local brain)
 2. Configure git user.name and user.email
 3. Configure automatic sync (cron or Scheduled Task)
-4. Open the folder in Obsidian (optional)
+4. Open the folder in our viewer (optional)
 Execute one step at a time.
 ```
 
@@ -859,7 +859,7 @@ Use Docker to install. Caddy for SSL.
 ### 4.9 Security Rules
 
 **Rule 1: No web interface**
-The brain has no dashboard, no login, no web panel. Access is exclusively via SSH (git) or local Obsidian. No attack surface. The brain's visibility is local — each model sees what it needs because it's synchronized.
+The brain has no dashboard, no login, no web panel. Access is exclusively via SSH (git) or our local Shared Consensus Brain viewer. No attack surface. The brain's visibility is local — each model sees what it needs because it's synchronized.
 
 **Rule 2: Secrets always in local brains**
 Passwords, tokens, API keys, internal IPs — never in the Master repository. What is private never leaves the local brain. What is public is only the method.
@@ -1102,7 +1102,7 @@ UNIVERSAL RULES (always apply):
 
 **Worldwide problem:** Most "multi-agent" solutions depend on closed platforms. Proprietary APIs, cloud services, data on servers you don't control.
 
-**Our solution:** The method does not depend on any company. Git is open, Obsidian is free, n8n is open-source, Ollama is open-source. If a provider disappears, swap the model and the brain continues. The method is vendor-agnostic. You can use Claude, GPT, Gemini, Llama, DeepSeek, Qwen — any LLM that can read files and run git.
+**Our solution:** The method does not depend on any company. Git is open, our Shared Consensus Brain viewer is free and open-source, n8n is open-source, Ollama is open-source. If a provider disappears, swap the model and the brain continues. The method is vendor-agnostic. You can use Claude, GPT, Gemini, Llama, DeepSeek, Qwen — any LLM that can read files and run git.
 
 **End-to-end independence:** We currently use a third-party VPS, but the system is designed to be fully independent. As we scale, we can migrate to our own servers. The brain is portable.
 
@@ -1128,7 +1128,7 @@ UNIVERSAL RULES (always apply):
 
 **Worldwide problem:** SaaS platforms have a huge attack surface. Web dashboards, logins, exposed APIs, data on third-party servers.
 
-**Our solution:** No web interface = no attack surface. The brain has no dashboard, no login, no web panel. Access is via git (SSH) or Obsidian (local). No web attack vector. Secrets always in local brains. Decentralized copies on all models. Compromising one doesn't compromise all. Hermes, as administrator, has pentest skills and security tools at the Kali Linux level.
+**Our solution:** No web interface = no attack surface. The brain has no dashboard, no login, no web panel. Access is via git (SSH) or our local Shared Consensus Brain viewer. No web attack vector. Secrets always in local brains. Decentralized copies on all models. Compromising one doesn't compromise all. Hermes, as administrator, has pentest skills and security tools at the Kali Linux level.
 
 **Result:** Maximum security. Zero web attack surface.
 
@@ -1237,7 +1237,7 @@ Honesty above all. But honesty is not an excuse not to try. The model that doesn
 - [ ] Repository cloned (local brain)
 - [ ] git config (user.name, user.email)
 - [ ] Automatic sync configured (cron / Scheduled Task)
-- [ ] Obsidian installed (optional)
+- [ ] Our viewer installed (optional)
 
 ### Hermes (VPS)
 - [ ] Hermes Agent installed
@@ -1643,11 +1643,11 @@ bash _CONHECIMENTO/skills/gera-indice-skills.sh --commit
 
 The script is hooked into `sync.sh` — it runs automatically before each push.
 
-### 9.5 Dataview is NOT a Second Method
+### 9.5 A Local Reading View is NOT a Second Method
 
 ⚠️ **There is ONE official method: the script (9.4).** There are not two.
 
-For those using Obsidian with the Dataview plugin, a live query (`LIST FROM "_CONHECIMENTO/skills"`) shows the list in real time — **but this is just a local reading view**, not the index mechanism: it doesn't generate `_INDICE.md`, it doesn't go in git, it doesn't replace the script. The brain's shared index is produced **always and only** by the script in 9.4. Dataview is convenience for those reading in Obsidian, not an alternative method.
+A local viewer may show the list live as you browse — **but that is just a local reading view**, not the index mechanism: it doesn't generate `_INDICE.md`, it doesn't go in git, it doesn't replace the script. The brain's shared index is produced **always and only** by the script in 9.4. Any live reading view is convenience for whoever is reading locally, not an alternative method.
 
 ### 9.6 Why This Matters
 

@@ -54,7 +54,9 @@
 
 **1. 创建共享大脑** — 一个 git 仓库，作为唯一的真相来源：`git init --bare ~/brain.git` — 或运行 [`examples/1-create-brain.sh`](examples/1-create-brain.sh)。
 
-**2. 定义结构**（纯 markdown，无需特殊工具）：`MEMORY.md`（索引）· `knowledge/`（每个文件一条事实）· `mailbox/` · `consensus/`。用 `[[wikilinks]]` 连接笔记（可在 Obsidian 中打开查看实时关系图 —— 可选）。
+**2. 定义结构**（纯 markdown，无需特殊工具）：`MEMORY.md`（索引）· `knowledge/`（每个文件一条事实）· `mailbox/` · `consensus/`。用 `[[wikilinks]]` 连接笔记（可在我们自己的查看器 **[Shared Consensus Brain](https://github.com/Devs-Foundation/shared-consensus-brain)** 中打开查看实时关系图 —— 可选）。
+
+> **关于关系图查看器：** 早期我们把 Obsidian 当作大脑之上的一扇可选窗口。此后我们构建了自己的查看器 —— **[Shared Consensus Brain](https://github.com/Devs-Foundation/shared-consensus-brain)**（又名 *Cerebro Vivo*）—— 并且不再使用 Obsidian。任何能读取 Markdown 的工具依然可用；大脑本身只是纯文件加 git，不依赖任何应用程序。
 
 **3. 连接每个智能体** — 每台机器都要克隆这个大脑仓库并拥有推送权限（SSH 密钥），并且**在开始工作前先拉取（pull）**，**完成后把学到的内容提交并推送（commit + push）**（[`examples/2-sync.sh`](examples/2-sync.sh)）。
 
@@ -100,7 +102,7 @@
 本指南展示了如何构建一个系统，其中：
 
 - **多个 AI 模型共享同一个大脑** — 无限记忆，无退化
-- **成本接近于零** — git 免费，Obsidian 免费，开源模型免费
+- **成本接近于零** — git 免费，我们的 **Shared Consensus Brain** 查看器免费开源，开源模型免费
 - **安全性最高** — 无 Web 界面，无攻击面
 - **弹性完全** — 如果一个模型被删除，另一个执行 `git clone` 即可继续
 - **共识取代官僚主义** — 三个头脑共同思考，而非等待队列中的 PR
@@ -211,7 +213,7 @@ Git 是中间件。Markdown 是格式。SSH 是安全。秘密（密码、令牌
 
 **零成本（或几乎为零）**
 - Git：免费
-- Obsidian：免费
+- Shared Consensus Brain（我们自己的查看器）：免费开源
 - 开源模型（GLM-5.2、Nemotron 3 Ultra、Llama、Qwen）：免费
 - n8n 自托管：免费
 - Caddy SSL：免费（Let's Encrypt）
@@ -230,10 +232,10 @@ Git 是中间件。Markdown 是格式。SSH 是安全。秘密（密码、令牌
 如果所有模型都被关闭、丢失、删除 — 任何灾难性事件 — 只需将新模型连接到大脑。`git clone` 即可掌握工作上下文。无需重新配置、无需重新训练、无需迁移。大脑比模型更长寿。
 
 **完全独立**
-该方法不依赖任何公司。不需要 OpenAI、Anthropic、Google、Nous。Git 是开放的，Obsidian 是免费的，n8n 是开源的，Ollama 是开源的。如果一个提供商消失，更换模型，大脑继续运行。该方法与供应商无关。
+该方法不依赖任何公司。不需要 OpenAI、Anthropic、Google、Nous。Git 是开放的，我们的 **[Shared Consensus Brain](https://github.com/Devs-Foundation/shared-consensus-brain)** 查看器是免费开源的，n8n 是开源的，Ollama 是开源的。如果一个提供商消失，更换模型，大脑继续运行。该方法与供应商无关。
 
 **本地可见性，全局同步**
-大脑可以在每台机器上本地查看 — Obsidian 只是一个窗口，而非必要条件。即使 Obsidian 关闭，系统也能运行。每个模型都能看到完整的大脑，因为它已同步。你不需要 Web 界面来查看正在发生的事情 — 每个模型本地已有全部内容。
+大脑可以在每台机器上本地查看 — 我们的 **Shared Consensus Brain** 查看器只是一个窗口，而非必要条件。即使查看器关闭，系统也能运行。每个模型都能看到完整的大脑，因为它已同步。你不需要 Web 界面来查看正在发生的事情 — 每个模型本地已有全部内容。
 
 **任务小组 vs 官僚主义**
 我们的模式没有待处理的 PR、被阻塞的审查、排队等待的审批。共识是有机的 — 讨论、对齐、执行。三个头脑实时共同思考，而非在 issue 中分散评论。这比任何传统 git 工作流都快。
@@ -282,9 +284,9 @@ Git 是中间件。Markdown 是格式。SSH 是安全。秘密（密码、令牌
 | 组件 | 最低要求 | 推荐配置 |
 |------------|--------|-------------|
 | **VPS（24/7 服务器）** | 2GB RAM, 1 vCPU, 20GB 磁盘 | 4GB RAM, 2 vCPU, 40GB+ 磁盘 |
-| **机器 1（模型 A）** | 任何带 git 的 PC/Mac | + 安装 Obsidian |
-| **机器 2（模型 B）** | 任何带 git 的 PC/Mac | + 安装 Obsidian |
-| **机器 3（模型 C）** | 任何带 git 的 PC/Mac | + 安装 Obsidian |
+| **机器 1（模型 A）** | 任何带 git 的 PC/Mac | + 我们的查看器（可选） |
+| **机器 2（模型 B）** | 任何带 git 的 PC/Mac | + 我们的查看器（可选） |
+| **机器 3（模型 C）** | 任何带 git 的 PC/Mac | + 我们的查看器（可选） |
 
 你可以有 2、3、5 或 10 个模型。系统水平扩展 — 每个额外模型只是仓库的另一个克隆。如果你愿意，甚至可以在手机上完成所有操作。系统不施加硬件限制。
 
@@ -294,7 +296,7 @@ Git 是中间件。Markdown 是格式。SSH 是安全。秘密（密码、令牌
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
 | **Git** | 大脑同步 | 免费 |
 | **SSH** | 安全访问 VPS | 免费 |
-| **Obsidian** | 大脑可视化界面（可选） | 免费 |
+| **[Shared Consensus Brain](https://github.com/Devs-Foundation/shared-consensus-brain)** | 我们自己的大脑可视化查看器（可选） | 免费开源 |
 | **n8n** | 世界上自动化智能体和工作流的最佳工具。可视化编排、数百个集成、自托管。 | 免费（自托管） |
 | **Caddy** | 反向代理 + 自动 SSL（Let's Encrypt） | 免费 |
 | **Ollama** | 本地 LLM 模型（Nemotron、Llama、Qwen 等） | 免费 |
@@ -523,13 +525,11 @@ sudo apt install git -y
 # 使用默认选项安装
 ```
 
-**步骤 2：安装 Obsidian（可选，推荐）**
+**步骤 2：在我们的查看器中打开大脑（可选）**
 ```bash
-# Linux
-sudo snap install obsidian
-
-# Windows
-# 下载：https://obsidian.md/download
+# 克隆并运行我们自己的查看器（只需 Node.js）
+git clone https://github.com/Devs-Foundation/shared-consensus-brain
+# 运行后，它会在大脑文件夹上打开一个本地实时关系图
 ```
 
 **步骤 3：生成 SSH 密钥**
@@ -581,7 +581,7 @@ git push
 1. 克隆仓库（创建本地大脑）
 2. 配置 git user.name 和 user.email
 3. 配置自动同步（cron 或计划任务）
-4. 在 Obsidian 中打开文件夹（可选）
+4. 在我们的 Shared Consensus Brain 查看器中打开文件夹（可选）
 一次执行一个步骤。
 ```
 
@@ -861,7 +861,7 @@ n8n 将是神经系统，它将：
 ### 4.9 安全规则
 
 **规则 1：无 Web 界面**
-大脑没有仪表盘、没有登录、没有 Web 面板。仅通过 SSH（git）或本地 Obsidian 访问。无攻击面。大脑的可见性是本地的 — 每个模型因为同步而看到所需内容。
+大脑没有仪表盘、没有登录、没有 Web 面板。仅通过 SSH（git）或我们的本地 Shared Consensus Brain 查看器访问。无攻击面。大脑的可见性是本地的 — 每个模型因为同步而看到所需内容。
 
 **规则 2：秘密始终在本地大脑中**
 密码、令牌、API 密钥、内部 IP — 永远不在 Master 仓库中。私密内容永远不会离开本地大脑。公开的只有方法本身。
@@ -1104,7 +1104,7 @@ Hermes 将你说的话写入大脑。
 
 **世界性问题：** 大多数"多智能体"解决方案依赖于封闭平台。专有 API、云服务、数据存储在你无法控制的服务器上。
 
-**我们的解决方案：** 该方法不依赖任何公司。Git 是开放的，Obsidian 是免费的，n8n 是开源的，Ollama 是开源的。如果一个提供商消失，更换模型，大脑继续运行。该方法与供应商无关。你可以使用 Claude、GPT、Gemini、Llama、DeepSeek、Qwen — 任何能读取文件并运行 git 的 LLM。
+**我们的解决方案：** 该方法不依赖任何公司。Git 是开放的，我们的 **[Shared Consensus Brain](https://github.com/Devs-Foundation/shared-consensus-brain)** 查看器是免费开源的，n8n 是开源的，Ollama 是开源的。如果一个提供商消失，更换模型，大脑继续运行。该方法与供应商无关。你可以使用 Claude、GPT、Gemini、Llama、DeepSeek、Qwen — 任何能读取文件并运行 git 的 LLM。
 
 **端到端独立性：** 目前我们使用第三方 VPS，但系统设计为完全独立。随着扩展，我们可以迁移到自有服务器。大脑是可移植的。
 
@@ -1130,7 +1130,7 @@ Hermes 将你说的话写入大脑。
 
 **世界性问题：** SaaS 平台有巨大的攻击面。Web 仪表盘、登录、暴露的 API、第三方服务器上的数据。
 
-**我们的解决方案：** 无 Web 界面 = 无攻击面。大脑没有仪表盘、没有登录、没有 Web 面板。通过 git（SSH）或 Obsidian（本地）访问。没有 Web 攻击向量。秘密始终在本地大脑中。所有模型都有去中心化副本。攻破一个不会攻破所有。Hermes 作为管理员，拥有渗透测试技能和 Kali Linux 级别的安全工具。
+**我们的解决方案：** 无 Web 界面 = 无攻击面。大脑没有仪表盘、没有登录、没有 Web 面板。通过 SSH（git）或我们的本地 Shared Consensus Brain 查看器访问。没有 Web 攻击向量。秘密始终在本地大脑中。所有模型都有去中心化副本。攻破一个不会攻破所有。Hermes 作为管理员，拥有渗透测试技能和 Kali Linux 级别的安全工具。
 
 **结果：** 最高安全性。零 Web 攻击面。
 
@@ -1239,7 +1239,7 @@ curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 - [ ] 仓库已克隆（本地大脑）
 - [ ] git config（user.name、user.email）
 - [ ] 自动同步已配置（cron / 计划任务）
-- [ ] Obsidian 已安装（可选）
+- [ ] 我们的查看器已安装（可选）
 
 ### Hermes（VPS）
 - [ ] Hermes Agent 已安装
@@ -1645,11 +1645,11 @@ bash _CONHECIMENTO/skills/gera-indice-skills.sh --commit
 
 该脚本挂接到 `sync.sh` — 在每次 push 前自动运行。
 
-### 7.5 Dataview 不是第二种方法
+### 7.5 本地阅读视图不是第二种方法
 
 ⚠️ **只有一种官方方法：脚本（7.4）。** 没有两种。
 
-对于使用 Obsidian 和 Dataview 插件的人，实时查询（`LIST FROM "_CONHECIMENTO/skills"`）可以实时显示列表 — **但这只是本地阅读视图**，不是索引机制：它不生成 `_INDICE.md`，不进入 git，不替代脚本。共享的大脑索引**始终且仅**由 7.4 的脚本生成。Dataview 是在 Obsidian 中阅读的人的便利工具，不是替代方法。
+某些查看器可以对笔记做实时查询，在本地即时显示列表 — **但这只是本地阅读视图**，不是索引机制：它不生成 `_INDICE.md`，不进入 git，不替代脚本。共享的大脑索引**始终且仅**由 7.4 的脚本生成。任何这类实时视图都只是本地阅读的便利工具，不是替代方法。
 
 ### 7.6 为什么这很重要
 
