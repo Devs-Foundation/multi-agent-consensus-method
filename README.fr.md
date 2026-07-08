@@ -1,6 +1,6 @@
 **🌐 Languages:** [English](README.en.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [Français](README.fr.md) · [中文](README.zh.md)
 
-# La Méthode Dev's Foundation — le premier Système de Consensus Multi-Agent au monde avec un Cerveau Partagé. Defensive Publication. Prior Art.
+# La Méthode Dev's Foundation — la première méthode combinant un consensus multi-agent collaboratif avec un cerveau partagé persistant et auto-hébergé (les modèles collaborent avec les humains ; ils ne sont pas orchestrés pour obéir à un pipeline). Defensive Publication. Prior Art.
 
 ## Construire un Système Multi-Agent avec un Cerveau Partagé
 
@@ -732,7 +732,7 @@ Le consensus est la façon dont les modèles prennent des décisions ensemble. T
 
 **Les deux Opus équilibrent le niveau d'intelligence du système.** Dans le débat, les deux Claude Opus 4.8 fonctionnent comme l'ancre de qualité. Indépendamment du modèle qu'Hermes utilise (Nemotron 3 Ultra, GLM-5.2, Llama, Qwen), les deux Opus ne peuvent pas avoir tous les deux tort. Si un Opus dit A et l'autre dit B, le débat s'affine jusqu'à ce qu'ils convergent. Si les deux disent la même chose, c'est que le raisonnement est solide — deux modèles de premier plan qui sont d'accord est le meilleur filtre de qualité qui existe. Cela signifie qu'Hermes peut changer de modèle sans compromettre la qualité des décisions : les Opus sont l'équilibre qui maintient le système intelligent indépendamment du niveau du modèle d'Hermes.
 
-**Notre système utilise n8n, mais il est au-dessus.** n8n est, en effet, le meilleur outil du monde pour automatiser des agents et des workflows — orchestration visuelle, centaines d'intégrations, self-hosted, gratuit. Nous l'utilisons et le recommandons. Mais notre système de consensus n'existe nulle part ailleurs. Il n'y a rien, **RIEN** de pré-programmé qui fasse ce que nous faisons.
+**Notre système utilise n8n, mais il est au-dessus.** n8n est, en effet, le meilleur outil du monde pour automatiser des agents et des workflows — orchestration visuelle, centaines d'intégrations, self-hosted, gratuit. Nous l'utilisons et le recommandons. La vraie différence : contrairement aux frameworks d'orchestration qui enferment les agents dans un pipeline fixe, ici les modèles **collaborent** au lieu d'obéir — et nous n'avons pas trouvé d'autre système combinant le consensus, un cerveau partagé persistant et l'auto-hébergement de la même manière.
 
 **Comment fonctionne le consensus en pratique :**
 
@@ -745,7 +745,7 @@ Le consensus est la façon dont les modèles prennent des décisions ensemble. T
 
 **Ce guide en est la preuve.** C'était notre consensus. Il s'est déroulé avec succès. La méthode est documentée, testée et en production.
 
-**n8n automatise ce qui existe déjà. Le consensus décide ce qui n'existe pas encore.** L'un ne remplace pas l'autre — ils se complètent. n8n s'occupe des workflows, des notifications, des déploiements. Le consensus s'occupe des décisions, du débat, de la qualité. Ensemble, ils forment le système le plus avancé qui existe pour le travail multi-agent.
+**n8n automatise ce qui existe déjà. Le consensus décide ce qui n'existe pas encore.** L'un ne remplace pas l'autre — ils se complètent. n8n s'occupe des workflows, des notifications, des déploiements. Le consensus s'occupe des décisions, du débat, de la qualité. Ensemble, ils forment un système véritablement puissant et entièrement auto-hébergé pour le travail multi-agent.
 
 **Structure d'un consensus :**
 ```markdown

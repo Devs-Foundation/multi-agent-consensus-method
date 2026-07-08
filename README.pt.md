@@ -1,6 +1,6 @@
 **🌐 Languages:** [English](README.en.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [Français](README.fr.md) · [中文](README.zh.md)
 
-# O Método Dev's Foundation — o primeiro Sistema de Consenso Multi-Agente do mundo com Cérebro Partilhado. Defensive Publication. Prior Art.
+# O Método Dev's Foundation — o primeiro método a combinar consenso multi-agente colaborativo com um cérebro partilhado persistente e self-hosted (os modelos colaboram com humanos; não são orquestrados a obedecer a um pipeline). Defensive Publication. Prior Art.
 
 ## Construir um Sistema Multi-Agente com Cérebro Partilhado
 
@@ -731,7 +731,7 @@ O consenso é como os modelos tomam decisões em conjunto. Três modelos debatem
 
 **Os dois Opus equilibram o rating de inteligência do sistema.** No debate, os dois Claude Opus 4.8 funcionam como a âncora de qualidade. Independentemente do modelo que o Hermes esteja a usar (Nemotron 3 Ultra, GLM-5.2, Llama, Qwen), os dois Opus não podem estar ambos errados. Se um Opus diz A e o outro diz B, o debate refina até convergirem. Se ambos dizem o mesmo, é porque o raciocínio é sólido — dois modelos de topo a concordar é o melhor filtro de qualidade que existe. Isto significa que o Hermes pode mudar de modelo sem comprometer a qualidade das decisões: os Opus são o equilíbrio que mantém o sistema inteligente independentemente do rating do modelo do Hermes.
 
-**O nosso sistema usa n8n, mas está acima dele.** O n8n é, de facto, a melhor ferramenta do mundo para automatizar agentes e workflows — orquestração visual, centenas de integrações, self-hosted, gratuito. Nós usamo-lo e recomendamo-lo. Mas o nosso sistema de consenso não existe em lado nenhum. Não há nada, **NADA** pré-programado que faça o que fazemos.
+**O nosso sistema usa n8n, mas está acima dele.** O n8n é, de facto, a melhor ferramenta do mundo para automatizar agentes e workflows — orquestração visual, centenas de integrações, self-hosted, gratuito. Nós usamo-lo e recomendamo-lo. A diferença real: ao contrário dos frameworks de orquestração que metem os agentes num pipeline fixo, aqui os modelos **colaboram** em vez de obedecer — e não encontrámos outro sistema a combinar consenso, cérebro partilhado persistente e self-host da mesma forma.
 
 **Como funciona o consenso na prática:**
 
@@ -744,7 +744,7 @@ O consenso é como os modelos tomam decisões em conjunto. Três modelos debatem
 
 **Este guia é a prova.** Foi o nosso consenso. Correu com sucesso. O método está documentado, testado, e em produção.
 
-**O n8n automatiza o que já existe. O consenso decide o que ainda não existe.** Um não substitui o outro — completam-se. O n8n trata dos workflows, notificações, deploys. O consenso trata das decisões, do debate, da qualidade. Juntos, são o sistema mais avançado que existe para trabalho multi-agente.
+**O n8n automatiza o que já existe. O consenso decide o que ainda não existe.** Um não substitui o outro — completam-se. O n8n trata dos workflows, notificações, deploys. O consenso trata das decisões, do debate, da qualidade. Juntos, formam um sistema genuinamente poderoso e totalmente self-hosted para trabalho multi-agente.
 
 **Estrutura de um consenso:**
 ```markdown

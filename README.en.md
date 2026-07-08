@@ -1,6 +1,6 @@
 **🌐 Languages:** [English](README.en.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [Français](README.fr.md) · [中文](README.zh.md)
 
-# The Dev's Foundation Method — the world's first Multi-Agent Consensus System with a Shared Brain. Defensive Publication. Prior Art.
+# The Dev's Foundation Method — the first method to combine collaborative multi-agent consensus with a persistent, self-hosted shared brain (the models collaborate with humans; they are not orchestrated to obey a pipeline). Defensive Publication. Prior Art.
 
 ## Building a Multi-Agent System with a Shared Brain and Consensus System.
 
@@ -732,7 +732,7 @@ Consensus is how models make decisions together. Three models debate, align, and
 
 **The two Opus models balance the system's intelligence rating.** In the debate, the two Claude Opus 4.8 function as the quality anchor. Regardless of which model Hermes is using (Nemotron 3 Ultra, GLM-5.2, Llama, Qwen), the two Opus models cannot both be wrong. If one Opus says A and the other says B, the debate refines until they converge. If both say the same thing, it's because the reasoning is solid — two top-tier models agreeing is the best quality filter that exists. This means Hermes can change models without compromising decision quality: the Opus models are the balance that keeps the system intelligent regardless of Hermes' model rating.
 
-**Our system uses n8n, but it's above it.** n8n is, in fact, the best tool in the world for automating agents and workflows — visual orchestration, hundreds of integrations, self-hosted, free. We use it and recommend it. But our consensus system doesn't exist anywhere else. There is nothing, **NOTHING** pre-programmed that does what we do.
+**Our system uses n8n, but it's above it.** n8n is, in fact, the best tool in the world for automating agents and workflows — visual orchestration, hundreds of integrations, self-hosted, free. We use it and recommend it. The real difference: unlike orchestration frameworks that script agents into a fixed pipeline, here the models **collaborate** rather than obey — and we haven't found another system that combines consensus, a persistent shared brain and self-hosting the same way.
 
 **How consensus works in practice:**
 
@@ -745,7 +745,7 @@ Consensus is how models make decisions together. Three models debate, align, and
 
 **This guide is the proof.** It was our consensus. It ran successfully. The method is documented, tested, and in production.
 
-**n8n automates what already exists. Consensus decides what doesn't yet exist.** One doesn't replace the other — they complement each other. n8n handles workflows, notifications, deploys. Consensus handles decisions, debate, quality. Together, they are the most advanced system that exists for multi-agent work.
+**n8n automates what already exists. Consensus decides what doesn't yet exist.** One doesn't replace the other — they complement each other. n8n handles workflows, notifications, deploys. Consensus handles decisions, debate, quality. Together, they make a genuinely powerful, fully self-hosted setup for multi-agent work.
 
 **Structure of a consensus:**
 ```markdown

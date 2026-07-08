@@ -1,6 +1,6 @@
 # The Dev's Foundation Method
 
-### The world's first Multi-Agent Consensus System with a Shared Brain
+### The first method to combine collaborative multi-agent consensus with a persistent, self-hosted shared brain
 **Defensive Publication · Prior Art · Public Domain**
 
 <p align="center">

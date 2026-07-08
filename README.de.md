@@ -1,6 +1,6 @@
 **🌐 Languages:** [English](README.en.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [Français](README.fr.md) · [中文](README.zh.md)
 
-# Die Dev's Foundation Methode — das weltweit erste Multi-Agenten-Konsenssystem mit gemeinsamem Gehirn. Defensive Publication. Prior Art.
+# Die Dev's Foundation Methode — die erste Methode, die kollaborativen Multi-Agenten-Konsens mit einem persistenten, selbst-gehosteten gemeinsamen Gehirn kombiniert (die Modelle arbeiten mit Menschen zusammen; sie werden nicht orchestriert, um einer Pipeline zu gehorchen). Defensive Publication. Prior Art.
 
 ## Ein Multi-Agenten-System mit gemeinsamem Gehirn aufbauen
 
@@ -733,7 +733,7 @@ Der Konsens ist, wie die Modelle gemeinsam Entscheidungen treffen. Drei Modelle 
 
 **Die beiden Opus gleichen das Intelligenz-Rating des Systems aus.** In der Diskussion fungieren die beiden Claude Opus 4.8 als Qualitätsanker. Unabhängig davon, welches Modell Hermes gerade verwendet (Nemotron 3 Ultra, GLM-5.2, Llama, Qwen), können die beiden Opus nicht beide falsch liegen. Wenn ein Opus A sagt und der andere B, verfeinert die Diskussion, bis sie konvergieren. Wenn beide dasselbe sagen, ist die Argumentation solide — zwei Top-Modelle, die übereinstimmen, ist der beste Qualitätsfilter, den es gibt. Das bedeutet, dass Hermes das Modell wechseln kann, ohne die Entscheidungsqualität zu beeinträchtigen: Die Opus sind das Gleichgewicht, das das System intelligent hält, unabhängig vom Rating des Hermes-Modells.
 
-**Unser System verwendet n8n, aber es steht darüber.** n8n ist tatsächlich das beste Tool der Welt zur Automatisierung von Agenten und Workflows — visuelle Orchestrierung, hunderte Integrationen, self-hosted, kostenlos. Wir nutzen es und empfehlen es. Aber unser Konsenssystem existiert nirgendwo sonst. Es gibt nichts, **GAR NICHTS** Vorprogrammiertes, das das macht, was wir tun.
+**Unser System verwendet n8n, aber es steht darüber.** n8n ist tatsächlich das beste Tool der Welt zur Automatisierung von Agenten und Workflows — visuelle Orchestrierung, hunderte Integrationen, self-hosted, kostenlos. Wir nutzen es und empfehlen es. Der eigentliche Unterschied: Anders als Orchestrierungs-Frameworks, die Agenten in eine feste Pipeline zwängen, **arbeiten** die Modelle hier **zusammen**, statt zu gehorchen — und wir haben kein anderes System gefunden, das Konsens, ein persistentes gemeinsames Gehirn und Self-Hosting auf dieselbe Weise kombiniert.
 
 **Wie der Konsens in der Praxis funktioniert:**
 
@@ -746,7 +746,7 @@ Der Konsens ist, wie die Modelle gemeinsam Entscheidungen treffen. Drei Modelle 
 
 **Dieser Leitfaden ist der Beweis.** Es war unser Konsens. Er war erfolgreich. Die Methode ist dokumentiert, getestet und in Produktion.
 
-**n8n automatisiert, was bereits existiert. Der Konsens entscheidet, was noch nicht existiert.** Eines ersetzt nicht das andere — sie ergänzen sich. n8n kümmert sich um Workflows, Benachrichtigungen, Deployments. Der Konsens kümmert sich um Entscheidungen, Diskussion, Qualität. Zusammen sind sie das fortschrittlichste System, das es für Multi-Agenten-Arbeit gibt.
+**n8n automatisiert, was bereits existiert. Der Konsens entscheidet, was noch nicht existiert.** Eines ersetzt nicht das andere — sie ergänzen sich. n8n kümmert sich um Workflows, Benachrichtigungen, Deployments. Der Konsens kümmert sich um Entscheidungen, Diskussion, Qualität. Zusammen bilden sie ein wirklich leistungsfähiges, vollständig selbst-gehostetes System für Multi-Agenten-Arbeit.
 
 **Struktur eines Konsenses:**
 ```markdown
