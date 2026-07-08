@@ -2,6 +2,18 @@
 
 # La Méthode Dev's Foundation — la première méthode combinant un consensus multi-agent collaboratif avec un cerveau partagé persistant et auto-hébergé (les modèles collaborent avec les humains ; ils ne sont pas orchestrés pour obéir à un pipeline). Defensive Publication. Prior Art.
 
+## Ce qui nous distingue
+
+Chaque élément ci-dessous existe séparément ailleurs — c'est la **combinaison** que nous n'avons pas trouvée dans un autre système :
+
+- **Consensus collaboratif** — les modèles débattent et se mettent d'accord avant d'agir ; ils ne sont pas orchestrés pour obéir à un pipeline fixe.
+- **Un cerveau partagé persistant** — du Markdown + git simple, qui grandit et se synchronise entre les machines et dans le temps (ni éphémère, ni une base de données vectorielle dans le cloud).
+- **Entièrement auto-hébergé et agnostique au fournisseur** — votre infrastructure, vos fichiers ; changez de modèle librement.
+- **Un tableau de bord de gestion** — un dashboard auto-hébergé qui montre le cerveau comme un graphe de connaissances vivant et gère le consensus (agenda, débats, décisions, historique), avec des vérifications de santé du cerveau et des sauvegardes.
+
+Des outils similaires existent pour chaque élément pris isolément. C'est la combinaison que nous n'avons pas vue ailleurs.
+
+
 ## Construire un Système Multi-Agent avec un Cerveau Partagé
 
 ### Guide Complet — Du Zéro au Système en Production

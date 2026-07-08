@@ -2,6 +2,18 @@
 
 # Die Dev's Foundation Methode — die erste Methode, die kollaborativen Multi-Agenten-Konsens mit einem persistenten, selbst-gehosteten gemeinsamen Gehirn kombiniert (die Modelle arbeiten mit Menschen zusammen; sie werden nicht orchestriert, um einer Pipeline zu gehorchen). Defensive Publication. Prior Art.
 
+## Was uns unterscheidet
+
+Jeder einzelne Baustein unten existiert anderswo für sich — es ist die **Kombination**, die wir in keinem anderen System gefunden haben:
+
+- **Kollaborativer Konsens** — die Modelle diskutieren und einigen sich, bevor sie handeln; sie werden nicht orchestriert, um einer festen Pipeline zu gehorchen.
+- **Ein persistentes gemeinsames Gehirn** — einfaches Markdown + git, das über Maschinen und Zeit hinweg wächst und synchronisiert (nicht flüchtig, keine Cloud-Vektordatenbank).
+- **Vollständig selbst-gehostet und anbieterunabhängig** — deine Infrastruktur, deine Dateien; wechsle Modelle frei.
+- **Ein Management-Dashboard** — ein selbst-gehostetes Panel, das das Gehirn als lebendigen Wissensgraphen zeigt und den Konsens verwaltet (Agenda, Debatten, Entscheidungen, Verlauf), mit Gehirn-Gesundheitsprüfungen und Backups.
+
+Für jeden einzelnen Baustein gibt es ähnliche Werkzeuge. Es ist die Kombination, die wir anderswo nicht gesehen haben.
+
+
 ## Ein Multi-Agenten-System mit gemeinsamem Gehirn aufbauen
 
 ### Vollständiger Leitfaden — Vom Nullpunkt zum Produktionssystem

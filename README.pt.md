@@ -2,6 +2,18 @@
 
 # O Método Dev's Foundation — o primeiro método a combinar consenso multi-agente colaborativo com um cérebro partilhado persistente e self-hosted (os modelos colaboram com humanos; não são orquestrados a obedecer a um pipeline). Defensive Publication. Prior Art.
 
+## O que nos distingue
+
+Cada peça abaixo já existe isolada noutro lado — é a **combinação** que não encontrámos noutro sistema:
+
+- **Consenso colaborativo** — os modelos debatem e chegam a acordo antes de agir; não são orquestrados a obedecer a um pipeline fixo.
+- **Um cérebro partilhado persistente** — Markdown + git simples, que cresce e sincroniza entre máquinas e ao longo do tempo (não é efémero, não é uma base de dados vetorial na cloud).
+- **Totalmente self-hosted e agnóstico ao fornecedor** — a tua infraestrutura, os teus ficheiros; trocas de modelo à vontade.
+- **Um painel de gestão** — um dashboard self-hosted que mostra o cérebro como um grafo de conhecimento vivo e gere o consenso (agenda, debates, decisões, histórico), com verificações de saúde do cérebro e backups.
+
+Existem ferramentas parecidas para cada peça isolada. É a combinação que não vimos noutro lado.
+
+
 ## Construir um Sistema Multi-Agente com Cérebro Partilhado
 
 ### Guia Completo — Do Zero ao Sistema em Produção

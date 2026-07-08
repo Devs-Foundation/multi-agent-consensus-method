@@ -2,6 +2,18 @@
 
 # The Dev's Foundation Method — the first method to combine collaborative multi-agent consensus with a persistent, self-hosted shared brain (the models collaborate with humans; they are not orchestrated to obey a pipeline). Defensive Publication. Prior Art.
 
+## What makes this different
+
+Each piece below exists on its own elsewhere — the **combination** is what we haven't found in another system:
+
+- **Collaborative consensus** — the models debate and agree before acting; they are not orchestrated to obey a fixed pipeline.
+- **A persistent shared brain** — plain Markdown + git, growing and syncing across machines and over time (not ephemeral, not a cloud vector database).
+- **Fully self-hosted & vendor-agnostic** — your infrastructure, your files; swap models freely.
+- **A management dashboard** — a self-hosted panel that shows the brain as a living knowledge graph and runs the consensus (agenda, debates, decisions, history), with brain-health checks and backups.
+
+Similar tools exist for each piece on its own. The combination is what we haven't seen elsewhere.
+
+
 ## Building a Multi-Agent System with a Shared Brain and Consensus System.
 
 ### Complete Guide — From Zero to Production System
