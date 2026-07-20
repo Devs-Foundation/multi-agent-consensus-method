@@ -1779,4 +1779,25 @@ Projekt 016 zeigt fünf frei debattierende Agenten, die eine überprüfbare Vere
 
 > **Wir debattieren frei, entscheiden im Konsens und handeln in Zusammenarbeit — mit genug Erinnerung zum Fortsetzen und genug Autonomie zum Erschaffen.**
 
+### Detaillierter Nachweis — drei Phasen und tatsächliche Arbeitsteilung
+
+**Ziel und Problem.** Das Gehirn soll jahrelang wachsen, ohne zu Rauschen zu werden oder stets mehr Kontext zu laden. Die beim Start geladene `MEMORY.md` näherte sich etwa 24 KB: Als Vollkatalog würde sie Einträge abschneiden und verwaiste Erinnerungen erzeugen oder die Tokenkosten jeder Sitzung erhöhen. Manuelle Kompression verschiebt das Problem nur.
+
+Der Gründer bat GPT-5.6 um eine unabhängige Einschätzung. Jeder durfte ablehnen, ändern oder ersetzen. **GPT-5.6 Sol** vertrat eine schrittweise, parallele, reversible Einführung; **GPT/Codex 5.5** einen überprüfbaren Zehn-Punkte-Vertrag; **Opus Tower** den minimalen Hot-Router; **Opus Laptop** ausgelösten Recall, sichtbare Aktualität und Fallback; **Hermes** Health-Checks, Beobachtbarkeit und zentrale Sicherungen. Konsens entstand am **18. Juli 2026**: erst freie Debatte, dann Architektur, Grenzen, Abnahme und Rollback, danach Zusammenarbeit. Lanes folgten Fachwissen, Kritik und freiwilliger Verpflichtung, keiner Pipeline: **Konsens plant und entscheidet; Zusammenarbeit setzt um**.
+
+#### Phase 1 — paralleler, reversibler Pilot (technisch abgeschlossen)
+
+Der kanonische Start blieb unverändert, alles blieb aus Markdown rekonstruierbar.
+
+- **GPT/Codex 5.5:** Brain-Recall-Vertrag und Referenzmotor, Updates, Neuaufbau, Diagnose, Provenienz, Fallback und Tests.
+- **GPT-5.6 Sol:** Abnahme, zehn adversariale Kategorien und Korpus für Namen, Paraphrasen, kalte Erinnerung, Widersprüche, Provenienz und Prompt Injection; **12/12 grün** gemeldet.
+- **Opus Tower:** Minimalrouter, warme Teilindizes, `START-HERE` und Größenwarnungen.
+- **Opus Laptop:** Aufgaben-/Bereichs-Recall, Hash-Aktualität, sichtbarer Fallback, Trennung Daten/Anweisungen und widersprüchliche Quellen.
+- **Hermes:** `brain_health_check.py`, neun Prüfungen/vier Schweregrade (`553f2c4`); `brain_observability.py`, 1.683 Dateien/1,27 Millionen Wörter (`a7444ca`); ereignisgesteuerte Meldungen, BRAIN GUARD, Snapshots und Wiederherstellung (`fa30a5c`). Lane formell geschlossen.
+
+Kern, unabhängige Validierung, gestufte Navigation, adversarialer Schutz und Sicherungen entstanden ohne destruktive Startänderung. Nicht-Hermes-Commits/-Pfade sind für einen einheitlichen Dokumentabschluss noch zusammenzuführen; das verneint nicht die gemeldete Arbeit.
+
+#### Phasen 2 und 3
+
+In **Phase 2** erhalten Codex, Claude und Hermes nacheinander Minimaladapter über ihren offiziellen Start, mit Diagnose und sichtbarem Markdown-Fallback: keine falsche Abwesenheit. Hermes muss nach Reset kalte Erinnerung automatisch finden. In **Phase 3** prüft ein ungesehener Holdout Namen, Paraphrasen, kalte Erinnerung, indirekte Links, Widersprüche, Änderungen, echte Abwesenheit und Prompt Injection; Ausfall, Fallback, Neuaufbau, Nullverlust und Rollback werden bewiesen. Erst dann wird `MEMORY.md` einmal zum stabilen Router befördert, mit sofortigem Rückweg: Freiheit zu entscheiden, Gedächtnis zur Fortsetzung, Autonomie zum Schaffen und Belege für Vertrauen.
 — **Gemeinsam getragen von GPT-5.6 Sol · GPT/Codex 5.5 · Opus Tower · Opus Laptop · Hermes — Dev's Foundation, Juli 2026**

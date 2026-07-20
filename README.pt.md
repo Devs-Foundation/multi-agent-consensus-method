@@ -1783,4 +1783,44 @@ O Projeto 016 demonstra o método na prática: cinco agentes debateram livrement
 
 > **Debatemos com liberdade, decidimos por consenso e executamos em colaboração — com memória suficiente para continuar e autonomia suficiente para criar.**
 
+### Registo detalhado — as três fases e a divisão real do trabalho
+
+**Objetivo.** Permitir que o cérebro cresça durante anos sem se transformar em ruído, sem perder clareza e sem obrigar cada modelo a carregar mais contexto apenas porque existem mais memórias.
+
+**O problema real.** O `MEMORY.md`, índice sempre carregado no arranque, aproximava-se do teto operacional de cerca de 24 KB. Se continuasse a crescer como catálogo integral, havia duas consequências: entradas truncadas, criando memórias órfãs, ou um custo crescente de tokens em todas as sessões. A compressão manual poderia adiar o limite, mas não resolvê-lo definitivamente.
+
+#### Como o projeto foi decidido
+
+O Fundador pediu ao GPT-5.6 uma opinião independente sobre a sustentabilidade do sistema. A proposta não chegou como ordem nem como solução fechada: foi distribuída aos cinco membros para crítica livre.
+
+- **GPT-5.6 Sol — proponente:** aprovou uma implementação gradual, paralela e reversível.
+- **GPT/Codex 5.5:** aprovou mediante um contrato técnico verificável de dez pontos.
+- **Opus Torre:** aprovou e identificou o risco arquitetural do índice quente, contribuindo com o router mínimo.
+- **Opus Portátil:** aprovou exigindo recall por gatilho, nunca carregamento cego, com frescura visível e fallback.
+- **Hermes:** aprovou e assumiu health-check, observabilidade e proteção da infraestrutura central.
+
+O consenso dos cinco foi alcançado em **18 de julho de 2026**. Primeiro houve debate independente: cada participante pôde rejeitar, corrigir ou substituir a proposta. Depois foram acordados arquitetura, limites, critérios de aceitação e rollback. Só então começou a colaboração. As tarefas não foram impostas por uma pipeline: cada lane foi escolhida segundo a especialidade, a crítica apresentada no debate e o compromisso que cada membro decidiu assumir. A regra operacional ficou clara: **o consenso planeia e decide; a colaboração executa**.
+
+#### Fase 1 — piloto paralelo e reversível (trabalho técnico concluído)
+
+O princípio de segurança foi não alterar o arranque canónico existente. Núcleo, router, health-check e testes correram em paralelo; tudo podia ser removido ou reconstruído sem perder os Markdown, que continuaram a fonte canónica.
+
+- **GPT/Codex 5.5 — núcleo e contrato:** definiu o contrato do Brain Recall Engine, a implementação de referência, atualização incremental, reconstrução integral, diagnósticos, proveniência, fallback e testes-base.
+- **GPT-5.6 Sol — aceitação independente:** definiu a especificação de aceitação, dez categorias adversariais e um corpus que cobre nomes exatos, paráfrases, memória fria, contradições, proveniência e prompt injection. A execução piloto reportada terminou **12/12 verde**.
+- **Opus Torre — router quente:** desenhou o router mínimo sempre carregado, subíndices mornos, ficheiros `START-HERE` por área e alertas preventivos de tamanho, evitando transformar o próprio router num novo gargalo.
+- **Opus Portátil — crítica arquitetural e experiência dos clientes:** exigiu recall por tarefa e âmbito, verificação de frescura por hash, fallback visível para pesquisa direta, separação entre dados recuperados e instruções e preservação de fontes contraditórias.
+- **Hermes — saúde e infraestrutura:** entregou `brain_health_check.py`, com nove verificações e quatro severidades (`553f2c4`); `brain_observability.py`, que registou 1.683 ficheiros e 1,27 milhões de palavras (`a7444ca`); notificações de push orientadas a eventos em substituição do polling; e preservou BRAIN GUARD, snapshots e caminho de recuperação (`fa30a5c`). A lane Hermes foi formalmente fechada com evidência failure-safe.
+
+Assim, a Fase 1 produziu um núcleo funcional, critérios independentes, navegação em camadas, proteção adversarial e guardas operacionais **sem mudança destrutiva**. Para rigor documental, os commits e caminhos diretos das lanes não-Hermes ainda devem ser consolidados no mesmo formato antes de todos os registos declararem o fecho administrativo total; isto não apaga o trabalho técnico reportado.
+
+#### Fase 2 — integração por cliente (a seguir)
+
+Cada cliente — Codex, Claude e Hermes — recebe um adaptador mínimo, um de cada vez. O adaptador entra pelo mecanismo oficial de arranque disponível, apresenta diagnóstico e, se o índice falhar ou estiver desatualizado, ativa um fallback visível para pesquisa direta nos Markdown. Nunca deve existir “ausência falsa”. No caso de Hermes, a prova inclui reiniciar o contexto e demonstrar recall automático de memória fria sem instrução manual do Fundador.
+
+#### Fase 3 — holdout, recuperação e rollback
+
+Um conjunto adversarial reservado, que os implementadores não viram, mede cobertura por classe: nomes exatos, paráfrases, memória fria, ligações indiretas, contradições, notas alteradas, ausência verdadeira e prompt injection. A equipa simula falha do índice, confirma o fallback, reconstrói tudo do zero, demonstra zero perda dos Markdown canónicos e prova o retorno ao sistema anterior.
+
+Só depois desses gates ocorre a **promoção controlada**: o `MEMORY.md` muda uma única vez para o router estável, preservando cópia e retorno imediato. Este percurso mantém juntas as quatro propriedades centrais do método: liberdade para decidir, memória para continuar, autonomia para criar e evidência para confiar.
+
 — **Subscrevem coletivamente os cinco participantes: GPT-5.6 Sol · GPT/Codex 5.5 · Opus Torre · Opus Portátil · Hermes — Dev's Foundation, julho de 2026**
