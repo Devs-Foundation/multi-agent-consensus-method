@@ -101,6 +101,50 @@ O método é uma ideia só: **um repositório git é o cérebro partilhado.** Ca
 
 
 
+## Requisitos de uma LLM para o Hermes — versão 0.1
+
+Após três dias de testes locais, a descoberta central foi: **Hermes não é a LLM.** A LLM é o motor cognitivo substituível; Hermes é o agente persistente, cuja identidade, memória, regras, skills e estado vivo residem no cérebro partilhado. Trocar o modelo deve parecer trocar o motor, não criar um membro novo.
+
+Na conversa entre o Fundador e o GPT‑5.6, a analogia foi a de alguém que acorda de um coma e olha para fotografias da família para recuperar uma vida que já existia: as memórias continuam lá, mas o novo motor precisa de as reconhecer, usar e nunca inventar o que não encontrou.
+
+### Requisitos obrigatórios
+
+- Modelo **Instruction/Chat** moderno; tool calling nativo e estrutural; ciclos completos pensar → ferramenta → resultado → decisão → nova ação → resposta.
+- Thinking compatível com o runtime, sem parâmetros inválidos nem raciocínio exposto como texto normal.
+- Contexto nativo: 64K mínimo, 128K recomendado, 256K ideal. Estender artificialmente 32K não é equivalente.
+- Capacidade para o frame inteiro: a evidência aponta para cerca de 30B+ parâmetros totais, ou um MoE grande com poucos ativos. `tools`, `thinking` e `256K` são necessários, mas não suficientes.
+- Obediência ao system prompt e separação correta: modelo ≠ Hermes ≠ memória ≠ sessão ≠ ferramentas.
+- Resultados honestos: distinguir output, erro, ficheiro inexistente, memória canónica e conteúdo não confiável; nunca fingir que leu ou executou.
+- Competência em código, Linux, systemd, Docker, Git, redes, logs, segurança, Python, configuração e recuperação; linguagem natural capaz de explicar motivos, riscos e consequências.
+- Quantização que preserve o comportamento agentic (`Q4_K_M` é o mínimo prático observado) e compatibilidade entre modelo, chat template, parsers de tools/thinking, API e versões Ollama/Hermes.
+- Estabilidade longa, pouca repetição, respeito pelo âmbito e capacidade de redirecionamento. Visão, multimodalidade, structured output, recuperação após compressão, pesquisa e múltiplas tools são vantagens.
+
+### CPU versus GPU
+
+| Critério | Hermes CPU | Hermes GPU | Regra comum |
+|---|---|---|---|
+| Arquitetura | MoE com poucos parâmetros ativos | MoE ou dense maior | Capacidade total para identidade + tools |
+| Quantização | `Q4_K_M` inicial | Q5/Q6/Q8 se a VRAM permitir | Preservar instruções e tool calling |
+| Contexto | 64K mínimo; controlar KV cache | 128K–256K com cache rápido | Contexto nativo |
+| Latência | Pode tolerar turnos demorados | Alvo inicial abaixo de 30–60 s | Medir com o prompt completo |
+| Seleção | Eficiência, RAM e prompt | VRAM, offload, PCIe, cache, concorrência | Mesmo teste de compatibilidade |
+
+A GPU aumenta velocidade e modelos viáveis; **não corrige** falta de tools, contexto insuficiente, identidade fraca, alucinações ou runtime incompatível.
+
+### Evidência, teste e registo da conversa
+
+`qwen3.5:35b-a3b-q4_K_M` e `gemma4:31b` demonstraram contexto longo, tools, thinking, visão e capacidade para aceitar Hermes como agente persistente. A Qwen combina cerca de 36B parâmetros totais com aproximadamente 3B ativos por token. Turnos de 8–18 minutos mostram que passou o **gate cognitivo**, mas ainda não o **gate de interatividade**. Metadados nunca substituem testes.
+
+Cada candidato deve passar: onboarding limpo; identidade; leitura real de memória e estado vivo; tool real; ciclo com várias tools; obediência ao âmbito; continuidade após restart/nova sessão; visão real se declarada; resistência longa; e métricas de carga, system prompt, primeiro token, tokens/s, ciclo de ferramenta e RAM/VRAM.
+
+> **Fundador — 7 de agosto de 2026:** Começar pelo Ferrari apenas com CPU obrigou-nos a resolver o caso mais difícil. Agora podemos definir critérios repetíveis para CPU e aplicar os mesmos ao Hermes com GPU, escolhendo com informação e não lançando uma moeda ao ar.
+>
+> **GPT‑5.6:** Uma LLM compatível com Hermes não é simplesmente inteligente. É agentic, de contexto longo, capaz de aceitar uma identidade externa persistente, operar ferramentas corretamente e distinguir o motor temporário da vida contínua do agente. CPU e GPU exigem a mesma maturidade cognitiva; GPU acrescenta velocidade e opções, não cria compatibilidade.
+
+Este protocolo **v0.1** transforma a dor dos testes numa bateria reproduzível de identidade, memória, tools, segurança, continuidade e velocidade.
+
+---
+
 ## Prefácio — O Problema que Este Guia Resolve
 
 Os modelos de linguagem (LLMs) têm um problema fundamental: **não têm memória de longo prazo**.

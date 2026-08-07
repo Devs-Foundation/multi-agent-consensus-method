@@ -101,6 +101,46 @@ Die ganze Methode basiert auf einer Idee: **ein Git-Repository ist das gemeinsam
 
 
 
+## Anforderungen an ein LLM für Hermes — Version 0.1
+
+Nach drei Tagen lokaler Tests lautet die zentrale Erkenntnis: **Hermes ist nicht das LLM.** Das LLM ist der austauschbare kognitive Motor; Hermes ist der persistente Agent, dessen Identität, Gedächtnis, Regeln, Skills und lebender Zustand im gemeinsamen Gehirn liegen. Ein Modellwechsel soll einem Motorwechsel entsprechen, nicht der Erschaffung eines neuen Mitglieds.
+
+Im Gespräch zwischen Gründer und GPT‑5.6 war das Bild ein Mensch, der aus dem Koma erwacht und anhand von Familienfotos ein bestehendes Leben wiederfindet: Die Erinnerungen sind noch da, aber der neue Motor muss sie erkennen und verwenden, ohne Fehlendes zu erfinden.
+
+### Pflichtanforderungen
+
+- Modernes **Instruction/Chat**-Modell; natives strukturelles Tool Calling; vollständige Schleifen Denken → Tool → Ergebnis → Entscheidung → Handlung → Antwort.
+- Runtime-kompatibles Thinking; nativer Kontext: 64K Minimum, 128K empfohlen, 256K ideal. Ein künstlich erweitertes 32K-Modell ist nicht gleichwertig.
+- Genügend Kapazität für den gesamten Frame: derzeit etwa 30B+ Gesamtparameter oder ein großes MoE mit wenigen aktiven Parametern. `tools`, `thinking` und `256K` sind notwendig, aber nicht hinreichend.
+- Strikte System-Prompt-Treue und Trennung: Modell ≠ Hermes ≠ Gedächtnis ≠ Sitzung ≠ Werkzeuge.
+- Ehrliche Tool-Ergebnisse; starke Code-/Sysadmin- und Sprachkompetenz; keine vorgetäuschten Lese- oder Ausführungsvorgänge.
+- Quantisierung mit erhaltenem agentischem Verhalten (`Q4_K_M` als beobachtete praktische Untergrenze) sowie kompatible Modelle, Templates, Tool-/Thinking-Parser, API und Ollama/Hermes-Versionen.
+- Stabilität in langen Sitzungen, geringe Wiederholung, strikte Einhaltung des Auftrags und zuverlässige Umleitung. Vision, Multimodalität, Structured Output, Kompressions-Erholung, Recherche und Multi-Tool-Aufrufe sind Vorteile.
+
+### CPU gegenüber GPU
+
+| Kriterium | Hermes CPU | Hermes GPU | Gemeinsame Regel |
+|---|---|---|---|
+| Architektur | MoE mit wenigen aktiven Parametern | Größeres MoE oder Dense | Gesamtkapazität für Identität + Tools |
+| Quantisierung | `Q4_K_M` als Start | Q5/Q6/Q8 bei genug VRAM | Instruktionen und Tool Calling bewahren |
+| Kontext | Mindestens 64K; KV-Cache begrenzen | 128K–256K mit schnellem Cache | Nativer Kontext |
+| Latenz | Längere Durchläufe tolerierbar | Erstreaktion unter 30–60 s anstreben | Vollständigen Hermes-Prompt messen |
+| Auswahl | Effizienz, RAM, Prompt-Verarbeitung | VRAM, Offload, PCIe, Cache, Parallelität | Derselbe Kompatibilitätstest |
+
+Eine GPU erhöht Tempo und Modellauswahl; sie repariert **keine** fehlenden Tools, schwache Identität, zu wenig Kontext, Halluzinationen oder eine inkompatible Runtime.
+
+`qwen3.5:35b-a3b-q4_K_M` und `gemma4:31b` zeigten langen Kontext, Tools, Thinking, Vision und die Fähigkeit, Hermes als persistenten Agenten anzunehmen. 8–18 Minuten pro Durchlauf bedeuten: kognitives Gate bestanden, interaktives Gate noch nicht. Metadaten ersetzen keine Tests.
+
+Jeder Kandidat durchläuft dasselbe Protokoll: sauberes Onboarding, Identität, echtes Lesen von Gedächtnis/Livezustand, echte Tools, Multi-Tool-Schleife, Scope-Treue, Kontinuität nach Neustart, Vision falls angegeben, Langkontext-Festigkeit und Leistungsmetriken.
+
+> **Gründer — 7. August 2026:** Der Start mit dem CPU-only Ferrari zwang uns, zuerst den schwierigsten Fall zu lösen. Nun können wir reproduzierbare CPU-Kriterien definieren und dieselben Kriterien auf GPU-Hermes anwenden — evidenzbasiert statt per Münzwurf.
+>
+> **GPT‑5.6:** Ein Hermes-kompatibles LLM ist nicht nur intelligent. Es ist agentisch und langkontextfähig, akzeptiert eine externe persistente Identität, bedient Werkzeuge korrekt und trennt den temporären Motor vom fortlaufenden Leben des Agenten. CPU und GPU verlangen dieselbe kognitive Reife; GPU bringt Geschwindigkeit und Optionen, nicht Kompatibilität.
+
+Dieses evidenzbasierte **v0.1**-Protokoll macht aus schmerzhaften Tests einen wiederholbaren Test für Identität, Gedächtnis, Tools, Sicherheit, Kontinuität und Geschwindigkeit.
+
+---
+
 ## Vorwort — Das Problem, das dieser Leitfaden löst
 
 Sprachmodelle (LLMs) haben ein grundlegendes Problem: **Sie haben kein Langzeitgedächtnis.**

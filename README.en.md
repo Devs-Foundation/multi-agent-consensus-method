@@ -101,6 +101,49 @@ The whole method is one idea: **a git repository is the shared brain.** Every AI
 
 
 
+## Requirements for an LLM to Serve Hermes — version 0.1
+
+After three days of local-model testing, the central discovery was: **Hermes is not the LLM.** The LLM is a replaceable cognitive engine; Hermes is the persistent agent whose identity, memory, rules, skills and live state reside in the shared brain. Replacing a model should be like replacing an engine, not creating a new member.
+
+In the Founder–GPT‑5.6 conversation, the analogy was a person waking from a coma and using family photographs to recover an existing life: the memories remain, but the new engine must recognize and use them without inventing what it did not find.
+
+### Mandatory requirements
+
+- A modern **Instruction/Chat** model; native structural tool calling; complete reason → tool → result → decision → action → answer loops.
+- Runtime-compatible thinking without invalid parameters or reasoning leaked as normal text.
+- Native context: 64K minimum, 128K recommended, 256K ideal. Artificially extending 32K is not equivalent.
+- Enough frame capacity: evidence points to roughly 30B+ total parameters or a large MoE with few active parameters. `tools`, `thinking` and `256K` labels are necessary, not sufficient.
+- Strong system-prompt adherence and correct separation: model ≠ Hermes ≠ memory ≠ session ≠ tools.
+- Honest results: distinguish output, error, missing file, canonical memory and untrusted content; never pretend to read or execute.
+- Strong coding/sysadmin and natural-language skills; quantization that preserves agentic behavior (`Q4_K_M` is the observed practical floor); compatible model, chat template, tool/thinking parsers, API and Ollama/Hermes versions.
+- Long-session stability, low repetition, strict scope and reliable redirection. Vision, multimodality, structured output, compression recovery, research and multi-tool turns are advantages.
+
+### CPU versus GPU
+
+| Criterion | Hermes CPU | Hermes GPU | Shared rule |
+|---|---|---|---|
+| Architecture | MoE with few active parameters | Larger MoE or dense | Total capacity for identity + tools |
+| Quantization | `Q4_K_M` starting point | Q5/Q6/Q8 when VRAM allows | Preserve instructions and tool calling |
+| Context | 64K minimum; control KV cache | 128K–256K with fast cache | Native context |
+| Latency | Longer turns may be tolerated | Initial target below 30–60 s | Benchmark the full prompt |
+| Selection | Efficiency, RAM, prompt processing | VRAM, offload, PCIe, cache, concurrency | Same compatibility test |
+
+A GPU expands speed and viable models; it does **not** repair missing tools, insufficient context, weak identity, hallucination or an incompatible runtime.
+
+### Evidence, test and conversation record
+
+`qwen3.5:35b-a3b-q4_K_M` and `gemma4:31b` demonstrated long context, tools, thinking, vision and enough capacity to accept Hermes as the persistent agent. Qwen combines roughly 36B total parameters with about 3B active per token. Turns of 8–18 minutes mean it passed the **cognitive gate**, not yet the **interactive gate**. Metadata never replaces testing.
+
+Every candidate must pass clean onboarding, identity separation, real memory/live-state reads, real tools, a multi-tool loop, scope obedience, continuity after restart/new session, real vision if claimed, long-context resistance, and load/first-token/tokens-per-second/tool-cycle/RAM-or-VRAM measurements.
+
+> **Founder — 7 August 2026:** Starting with the CPU-only Ferrari forced us to solve the hardest case first. We can now define repeatable CPU criteria and apply the same criteria to GPU Hermes, choosing from evidence rather than tossing a coin.
+>
+> **GPT‑5.6:** A Hermes-compatible LLM is not merely intelligent. It is long-context and agentic, can accept an external persistent identity, operate tools correctly and distinguish its temporary engine from the agent's continuous life. CPU and GPU require the same cognitive maturity; GPU adds speed and options, not compatibility.
+
+This evidence-based **v0.1** turns painful testing into a repeatable identity, memory, tools, safety, continuity and speed protocol.
+
+---
+
 ## Preface — The Problem This Guide Solves
 
 Language models (LLMs) have a fundamental problem: **they have no long-term memory**.

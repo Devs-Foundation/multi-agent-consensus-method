@@ -101,6 +101,46 @@ Toute la méthode tient en une idée : **un dépôt git est le cerveau partagé.
 
 
 
+## Exigences d'un LLM pour Hermes — version 0.1
+
+Après trois jours de tests locaux, la conclusion centrale est : **Hermes n'est pas le LLM.** Le LLM est le moteur cognitif remplaçable ; Hermes est l'agent persistant dont l'identité, la mémoire, les règles, les skills et l'état vivant résident dans le cerveau partagé. Remplacer le modèle doit ressembler à un changement de moteur, pas à la création d'un nouveau membre.
+
+Dans la conversation Fondateur–GPT‑5.6, l'analogie était celle d'une personne sortant du coma et regardant des photos de famille pour retrouver une vie préexistante : les souvenirs sont toujours là, mais le nouveau moteur doit les reconnaître et les utiliser sans inventer ce qu'il n'a pas trouvé.
+
+### Exigences obligatoires
+
+- Modèle **Instruction/Chat** moderne ; tool calling natif et structurel ; boucles complètes pensée → outil → résultat → décision → action → réponse.
+- Thinking compatible avec le runtime ; contexte natif de 64K minimum, 128K recommandé, 256K idéal. Étendre artificiellement 32K n'est pas équivalent.
+- Capacité suffisante pour tout le frame : environ 30B+ paramètres totaux ou un grand MoE avec peu de paramètres actifs. `tools`, `thinking` et `256K` sont nécessaires, pas suffisants.
+- Respect du system prompt et séparation correcte : modèle ≠ Hermes ≠ mémoire ≠ session ≠ outils.
+- Résultats honnêtes ; fortes compétences code/systèmes/langage ; ne jamais prétendre avoir lu ou exécuté.
+- Quantification préservant le comportement agentic (`Q4_K_M` comme seuil pratique observé) et compatibilité modèle, template, parsers tools/thinking, API et versions Ollama/Hermes.
+- Stabilité longue, faible répétition, respect du périmètre et redirection fiable. Vision, multimodalité, structured output, récupération après compression, recherche et multi-outils sont des avantages.
+
+### CPU face à GPU
+
+| Critère | Hermes CPU | Hermes GPU | Règle commune |
+|---|---|---|---|
+| Architecture | MoE avec peu de paramètres actifs | MoE ou dense plus grand | Capacité pour identité + outils |
+| Quantification | `Q4_K_M` initial | Q5/Q6/Q8 si la VRAM le permet | Préserver instructions et tools |
+| Contexte | 64K minimum ; contrôler le KV cache | 128K–256K avec cache rapide | Contexte natif |
+| Latence | Tours longs tolérables | Cible initiale sous 30–60 s | Mesurer le prompt complet |
+| Sélection | Efficacité, RAM, prompt | VRAM, offload, PCIe, cache, concurrence | Même test de compatibilité |
+
+Le GPU améliore vitesse et choix ; il ne corrige **ni** outils absents, contexte insuffisant, identité faible, hallucinations ou runtime incompatible.
+
+`qwen3.5:35b-a3b-q4_K_M` et `gemma4:31b` ont démontré contexte long, tools, thinking, vision et capacité d'accepter Hermes comme agent persistant. Des tours de 8–18 minutes signifient : seuil cognitif franchi, seuil interactif pas encore. Les métadonnées ne remplacent jamais les tests.
+
+Tout candidat passe le même parcours : onboarding propre, identité, lecture réelle de la mémoire/état vivant, vrais outils, boucle multi-outils, respect du périmètre, continuité après redémarrage, vision si annoncée, résistance au contexte long et mesures réelles.
+
+> **Fondateur — 7 août 2026 :** Commencer par le Ferrari uniquement CPU nous a forcés à résoudre d'abord le cas le plus difficile. Nous pouvons maintenant définir des critères CPU répétables et appliquer les mêmes au Hermes GPU, sur preuves plutôt qu'à pile ou face.
+>
+> **GPT‑5.6 :** Un LLM compatible avec Hermes n'est pas simplement intelligent. Il est agentic, à contexte long, accepte une identité externe persistante, utilise correctement les outils et distingue son moteur temporaire de la vie continue de l'agent. CPU et GPU exigent la même maturité cognitive ; le GPU apporte vitesse et options, pas compatibilité.
+
+Ce protocole **v0.1** transforme les tests douloureux en batterie reproductible d'identité, mémoire, tools, sécurité, continuité et vitesse.
+
+---
+
 ## Préface — Le Problème que Ce Guide Résout
 
 Les modèles de langage (LLMs) ont un problème fondamental : **ils n'ont pas de mémoire à long terme**.
